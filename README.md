@@ -29,7 +29,8 @@ Edit [`config.js`](./config.js) to match the exact column headers in your sheet.
 ```js
 export const config = {
   sheetId: "YOUR_SHEET_ID",
-  sheetName: "Form Responses 1", // optional tab name
+ sheetName: "Form Responses 1", // optional tab name
+ sheetGid: "0",                // optional numeric gid for the sheet tab
   dateColumn: "Timestamp",       // must match your sheet header
   numericQuestions: [
     { column: "Hours of sleep", label: "Sleep Duration (hrs)", chart: "line", color: "#38bdf8" }
@@ -57,6 +58,8 @@ Open `index.html` in a modern browser (Chrome, Edge, Firefox, Safari). No build 
 - Adjust the **Date Range** selector to focus on recent entries.
 - Use **Upload CSV export** if you saved a local copy instead.
 - Search within reflections using the keyword field.
+
+> Because the page is loaded from your filesystem (`file://` origin), Google must allow cross-origin access to the CSV export. Make sure the sheet is shared as "Anyone with the link – Viewer" or published via `File → Share → Publish to web`. If you still see the red status message, try opening the form's spreadsheet and choose **Publish to the web → Entire sheet → CSV** once; afterwards the export URL responds with the proper CORS headers.
 
 ## Development notes
 

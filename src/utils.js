@@ -83,9 +83,14 @@ export function groupByCategory(rows, column) {
   for (const row of rows) {
     const rawValue = row[column];
     if (!rawValue) continue;
-    const value = String(rawValue).trim();
-    if (!value) continue;
-    counts.set(value, (counts.get(value) ?? 0) + 1);
+    const parts = String(rawValue)
+      .split(/[,;\n]/)
+      .map((part) => part.trim())
+      .filter(Boolean);
+    if (!parts.length) continue;
+    for (const value of parts) {
+      counts.set(value, (counts.get(value) ?? 0) + 1);
+    }
   }
   return Array.from(counts.entries()).map(([label, value]) => ({ label, value }));
 }

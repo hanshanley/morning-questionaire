@@ -8,6 +8,9 @@ export const config = {
   /** Optional tab name inside the spreadsheet. Leave blank for the first sheet. */
   sheetName: "Form Responses 1",
 
+  /** Optional sheet GID (string). Set this if the first sheet isn't the response tab. */
+  sheetGid: "0",
+
   /** Column name that holds the timestamp or date of each response. */
   dateColumn: "Timestamp",
 

@@ -113,9 +113,14 @@ function handleCsvUpload(event) {
 }
 
 function buildSheetCsvUrl(sheetId, sheetName) {
-  const base = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
-  if (!sheetName) return base;
-  return `${base}&sheet=${encodeURIComponent(sheetName)}`;
+  const base = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
+  if (config.sheetGid) {
+    return `${base}&gid=${encodeURIComponent(config.sheetGid)}`;
+  }
+  if (sheetName) {
+    return `${base}&sheet=${encodeURIComponent(sheetName)}`;
+  }
+  return base;
 }
 
 function parseCsv(csvText) {
