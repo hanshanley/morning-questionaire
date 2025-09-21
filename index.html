@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morning Questionnaire Visualizer</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
+  <script type="module" src="./src/app.js" defer></script>
+</head>
+<body>
+  <header class="page-header">
+    <h1>Morning Questionnaire Visualizer</h1>
+    <p class="subtitle">Explore daily trends from your Google Form responses.</p>
+  </header>
+
+  <main>
+    <section id="controls" class="panel">
+      <div class="control-row">
+        <div class="field">
+          <label for="sheetIdInput">Google Sheet ID</label>
+          <input id="sheetIdInput" type="text" placeholder="1GrJ0LOo4b8kkZ5Np1ov9t3Y7HAIeNR-oUxUEmdNELa0" />
+        </div>
+        <div class="field">
+          <label for="sheetNameInput">Sheet Tab Name</label>
+          <input id="sheetNameInput" type="text" placeholder="Form Responses 1" />
+        </div>
+        <div class="field">
+          <label for="dateRangeSelect">Date Range</label>
+          <select id="dateRangeSelect">
+            <option value="7">Last 7 days</option>
+            <option value="30" selected>Last 30 days</option>
+            <option value="90">Last 90 days</option>
+            <option value="365">Last 12 months</option>
+            <option value="all">All time</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-row">
+        <button id="reloadBtn" type="button">Reload from Google Sheet</button>
+        <label class="file-input">Upload CSV export<input id="csvUpload" type="file" accept=".csv,text/csv" /></label>
+      </div>
+      <p id="statusMessage" class="status"></p>
+    </section>
+
+    <section id="summary" class="grid"></section>
+
+    <section>
+      <h2>Numeric Trends</h2>
+      <div id="numericCharts" class="grid"></div>
+    </section>
+
+    <section>
+      <h2>Category Snapshots</h2>
+      <div id="categoricalCharts" class="grid"></div>
+    </section>
+
+    <section>
+      <h2>Written Reflections</h2>
+      <div class="panel" id="textResponses">
+        <div class="field">
+          <label for="textFilter">Search reflections</label>
+          <input id="textFilter" type="search" placeholder="Search by keyword" />
+        </div>
+        <div id="textGroups"></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
